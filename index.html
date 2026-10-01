@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -12,59 +13,38 @@
 
 <body>
 
+    <!-- バージョン表示 -->
     <div class="version-label">デモバージョン 1.0</div>
 
-    <!-- =========================
-         ヘッダー
-    ========================== -->
-
+    <!-- ヘッダー -->
     <header>
         <h1>ここで一句</h1>
     </header>
 
+    <!-- 投稿一覧 -->
+    <main id="posts">
+        <p class="loading-message">投稿を読み込み中...</p>
+    </main>
 
-    <!-- =========================
-         投稿一覧
-    ========================== -->
-
-    <main id="posts"></main>
-
-
-    <!-- =========================
-         ＋ボタン
-    ========================== -->
-
-    <button id="openPostButton" class="plus-button">
+    <!-- ＋ボタン -->
+    <button id="openPostButton" class="plus-button" aria-label="投稿する">
         ＋
     </button>
 
-
-    <!-- =========================
-         投稿ポップアップ
-    ========================== -->
-
+    <!-- 投稿ポップアップ -->
     <div id="postModal" class="modal">
 
         <div class="modal-content">
 
             <!-- 閉じるボタン -->
-
-            <button id="closePostButton" class="close-button">
+            <button id="closePostButton" class="close-button" aria-label="閉じる">
                 ×
             </button>
 
-
             <h2>ここで一句</h2>
 
-
-            <!-- =========================
-                 ユーザー情報
-            ========================== -->
-
+            <!-- ユーザー情報 -->
             <h3>投稿者</h3>
-
-
-            <!-- 名前 -->
 
             <input
                 type="text"
@@ -73,19 +53,10 @@
                 maxlength="30"
             >
 
-
-            <!-- ユーザーID -->
-
             <p id="userIdDisplay"></p>
 
-
-            <!-- =========================
-                 アイコン選択
-            ========================== -->
-
-            <p class="icon-title">
-                アイコンを選択
-            </p>
+            <!-- アイコン選択 -->
+            <p class="icon-title">アイコンを選択</p>
 
             <div id="iconSelector" class="icon-selector">
 
@@ -126,15 +97,8 @@
 
             </div>
 
-
-            <!-- =========================
-                 一句
-            ========================== -->
-
+            <!-- 一句 -->
             <h3>一句</h3>
-
-
-            <!-- 5 -->
 
             <input
                 type="text"
@@ -143,9 +107,6 @@
                 placeholder="5文字程度"
             >
 
-
-            <!-- 7 -->
-
             <input
                 type="text"
                 id="line2"
@@ -153,34 +114,25 @@
                 placeholder="7文字程度"
             >
 
-
-            <!-- 最後 -->
-
             <textarea
                 id="line3"
                 maxlength="15"
                 placeholder="5文字程度"
             ></textarea>
 
-
-            <!-- =========================
-                 投句
-            ========================== -->
-
-            <button
-                id="postButton"
-                class="post-button"
-            >
+            <!-- 投句 -->
+            <button id="postButton" class="post-button">
                 投句する
             </button>
+
+            <p id="postError" class="post-error" role="alert"></p>
 
         </div>
 
     </div>
 
-
-    <script src="script.js"></script>
+    <!-- Firebase対応JS -->
+    <script type="module" src="script.js"></script>
 
 </body>
-
 </html>
