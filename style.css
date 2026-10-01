@@ -1,3 +1,4 @@
+
 /* =========================
    全体
 ========================= */
@@ -8,10 +9,27 @@
 
 body {
     margin: 0;
-
     background: #f5f1e8;
-
     font-family: sans-serif;
+    padding-bottom: 90px;
+}
+
+
+/* =========================
+   バージョン表示
+========================= */
+
+.version-label {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: #888;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    pointer-events: none;
 }
 
 
@@ -21,23 +39,16 @@ body {
 
 header {
     position: sticky;
-
     top: 0;
-
     background: white;
-
     padding: 15px;
-
     border-bottom: 1px solid #ddd;
-
     text-align: center;
-
     z-index: 10;
 }
 
 header h1 {
     margin: 0;
-
     font-size: 24px;
 }
 
@@ -47,9 +58,15 @@ header h1 {
 ========================= */
 
 #posts {
+    width: 100%;
     max-width: 600px;
-
     margin: auto;
+}
+
+.loading-message {
+    text-align: center;
+    color: #777;
+    padding: 30px 15px;
 }
 
 
@@ -59,10 +76,9 @@ header h1 {
 
 .post {
     background: white;
-
     padding: 20px;
-
     border-bottom: 1px solid #ddd;
+    overflow-wrap: anywhere;
 }
 
 
@@ -72,9 +88,7 @@ header h1 {
 
 .post-user {
     display: flex;
-
     align-items: center;
-
     margin-bottom: 15px;
 }
 
@@ -84,11 +98,9 @@ header h1 {
 .post-icon {
     width: 45px;
     height: 45px;
-
+    flex-shrink: 0;
     border-radius: 50%;
-
     object-fit: cover;
-
     margin-right: 10px;
 }
 
@@ -97,20 +109,29 @@ header h1 {
 
 .post-user-info {
     display: flex;
-
     flex-direction: column;
+    min-width: 0;
 }
 
 .post-user-name {
     font-weight: bold;
-
     font-size: 16px;
+    overflow-wrap: anywhere;
 }
 
 .post-user-id {
     color: #777;
-
     font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+
+/* 投稿時間 */
+
+.post-time {
+    color: #999;
+    font-size: 12px;
+    margin-top: 3px;
 }
 
 
@@ -124,8 +145,9 @@ header h1 {
     display: inline-block;
     writing-mode: vertical-rl;
     font-size: 20px;
-    margin-top: 0px;
+    margin-top: 0;
     vertical-align: top;
+    overflow-wrap: anywhere;
 }
 
 .line2 {
@@ -136,34 +158,26 @@ header h1 {
     margin-top: 40px;
 }
 
+
 /* =========================
    ＋ボタン
 ========================= */
 
 .plus-button {
     position: fixed;
-
     right: 25px;
     bottom: 25px;
-
     width: 60px;
     height: 60px;
-
     border: none;
-
     border-radius: 50%;
-
     background: #333;
-
     color: white;
-
     font-size: 32px;
-
     cursor: pointer;
-
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-
     z-index: 20;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .plus-button:hover {
@@ -177,21 +191,17 @@ header h1 {
 
 .modal {
     display: none;
-
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
+    height: 100dvh;
     background: rgba(0, 0, 0, 0.45);
-
     justify-content: center;
     align-items: center;
-
     z-index: 30;
+    padding: 15px;
 }
 
 
@@ -201,27 +211,20 @@ header h1 {
 
 .modal-content {
     position: relative;
-
-    width: 90%;
-
+    width: 100%;
     max-width: 500px;
-
     max-height: 90vh;
-
+    max-height: 90dvh;
     overflow-y: auto;
-
     background: white;
-
     padding: 30px;
-
     border-radius: 20px;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal-content h2 {
     margin-top: 0;
-
     text-align: center;
 }
 
@@ -236,25 +239,36 @@ header h1 {
 
 input,
 textarea {
+    display: block;
     width: 100%;
-
     padding: 12px;
-
     margin-bottom: 12px;
-
     border: 1px solid #ccc;
-
     border-radius: 8px;
-
     font-size: 17px;
-
     font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid #777;
+    outline-offset: 1px;
 }
 
 textarea {
     min-height: 100px;
-
     resize: vertical;
+}
+
+
+/* =========================
+   ユーザーID表示
+========================= */
+
+#userIdDisplay {
+    margin: -3px 0 18px;
+    color: #777;
+    font-size: 13px;
 }
 
 
@@ -268,11 +282,8 @@ textarea {
 
 .icon-selector {
     display: flex;
-
     gap: 12px;
-
     margin-bottom: 20px;
-
     flex-wrap: wrap;
 }
 
@@ -282,31 +293,20 @@ textarea {
 .icon-choice {
     width: 60px;
     height: 60px;
-
     border-radius: 50%;
-
     object-fit: cover;
-
     cursor: pointer;
-
     border: 3px solid transparent;
-
     transition: 0.15s;
+    -webkit-tap-highlight-color: transparent;
 }
-
-
-/* マウスを乗せたとき */
 
 .icon-choice:hover {
     transform: scale(1.05);
 }
 
-
-/* 選択中 */
-
 .icon-choice.selected {
     border: 3px solid #333;
-
     transform: scale(1.08);
 }
 
@@ -317,16 +317,11 @@ textarea {
 
 .close-button {
     position: absolute;
-
     top: 10px;
     right: 15px;
-
     border: none;
-
     background: none;
-
     font-size: 28px;
-
     cursor: pointer;
 }
 
@@ -337,19 +332,12 @@ textarea {
 
 .post-button {
     width: 100%;
-
     padding: 13px;
-
     border: none;
-
     border-radius: 10px;
-
     background: #333;
-
     color: white;
-
     font-size: 17px;
-
     cursor: pointer;
 }
 
@@ -357,27 +345,109 @@ textarea {
     background: #555;
 }
 
-/* =========================
-   投稿時間
-========================= */
-
-.post-time {
-    color: #999;
-    font-size: 12px;
-    margin-top: 3px;
+.post-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
 }
 
 
+/* 投稿エラー */
+
+.post-error {
+    color: #c0392b;
+    font-size: 13px;
+    margin-bottom: 0;
+}
 
 
-.version-label {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 12px;
-    color: #888;
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 5px 10px;
-    border-radius: 5px;
-    z-index: 1000;
+/* =========================
+   スマホ対応
+========================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 14px 10px;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    #posts {
+        width: 100%;
+    }
+
+    .post {
+        padding: 16px;
+    }
+
+    .post-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .line1,
+    .line2,
+    .line3 {
+        font-size: 20px;
+    }
+
+    .plus-button {
+        right: 18px;
+        bottom: 18px;
+        width: 58px;
+        height: 58px;
+    }
+
+    .modal {
+        padding: 10px;
+        align-items: center;
+    }
+
+    .modal-content {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .icon-selector {
+        gap: 10px;
+    }
+
+    .icon-choice {
+        width: 54px;
+        height: 54px;
+    }
+
+    .version-label {
+        top: 8px;
+        left: 8px;
+        font-size: 10px;
+        padding: 4px 7px;
+    }
+}
+
+
+/* =========================
+   小さいスマホ
+========================= */
+
+@media (max-width: 360px) {
+
+    .post {
+        padding: 12px;
+    }
+
+    .modal-content {
+        padding: 22px 15px;
+    }
+
+    .icon-selector {
+        gap: 7px;
+    }
+
+    .icon-choice {
+        width: 48px;
+        height: 48px;
+    }
 }
