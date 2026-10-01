@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ここで一句</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="version-label">デモバージョン 1.0</div>
+
+    <!-- =========================
+         ヘッダー
+    ========================== -->
+
+    <header>
+        <h1>ここで一句</h1>
+    </header>
+
+
+    <!-- =========================
+         投稿一覧
+    ========================== -->
+
+    <main id="posts"></main>
+
+
+    <!-- =========================
+         ＋ボタン
+    ========================== -->
+
+    <button id="openPostButton" class="plus-button">
+        ＋
+    </button>
+
+
+    <!-- =========================
+         投稿ポップアップ
+    ========================== -->
+
+    <div id="postModal" class="modal">
+
+        <div class="modal-content">
+
+            <!-- 閉じるボタン -->
+
+            <button id="closePostButton" class="close-button">
+                ×
+            </button>
+
+
+            <h2>ここで一句</h2>
+
+
+            <!-- =========================
+                 ユーザー情報
+            ========================== -->
+
+            <h3>投稿者</h3>
+
+
+            <!-- 名前 -->
+
+            <input
+                type="text"
+                id="userName"
+                placeholder="名前"
+                maxlength="30"
+            >
+
+
+            <!-- ユーザーID -->
+
+            <p id="userIdDisplay"></p>
+
+
+            <!-- =========================
+                 アイコン選択
+            ========================== -->
+
+            <p class="icon-title">
+                アイコンを選択
+            </p>
+
+            <div id="iconSelector" class="icon-selector">
+
+                <img
+                    src="img/img1.png"
+                    class="icon-choice"
+                    data-icon="img/img1.png"
+                    alt="アイコン1"
+                >
+
+                <img
+                    src="img/img2.png"
+                    class="icon-choice"
+                    data-icon="img/img2.png"
+                    alt="アイコン2"
+                >
+
+                <img
+                    src="img/img3.png"
+                    class="icon-choice"
+                    data-icon="img/img3.png"
+                    alt="アイコン3"
+                >
+
+                <img
+                    src="img/img4.png"
+                    class="icon-choice"
+                    data-icon="img/img4.png"
+                    alt="アイコン4"
+                >
+
+                <img
+                    src="img/img5.png"
+                    class="icon-choice"
+                    data-icon="img/img5.png"
+                    alt="アイコン5"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 一句
+            ========================== -->
+
+            <h3>一句</h3>
+
+
+            <!-- 5 -->
+
+            <input
+                type="text"
+                id="line1"
+                maxlength="8"
+                placeholder="5文字程度"
+            >
+
+
+            <!-- 7 -->
+
+            <input
+                type="text"
+                id="line2"
+                maxlength="10"
+                placeholder="7文字程度"
+            >
+
+
+            <!-- 最後 -->
+
+            <textarea
+                id="line3"
+                maxlength="15"
+                placeholder="5文字程度"
+            ></textarea>
+
+
+            <!-- =========================
+                 投句
+            ========================== -->
+
+            <button
+                id="postButton"
+                class="post-button"
+            >
+                投句する
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
